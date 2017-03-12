@@ -3,7 +3,7 @@
 const scene = new THREE.Scene(); //シーンを設定：シーンについて
 //レンダラーを設定：レンダラーについて
 const renderer = new THREE.WebGLRenderer({
-  // alpha:true,
+//   alpha:true,
 //   antialias: true,
 });
 
@@ -16,7 +16,9 @@ document.body.appendChild( renderer.domElement );
 
 //カメラの設定：カメラについて
 const camera = new THREE.PerspectiveCamera( 75, canvasWidth / canvasHeight, 1, 1000 );
-camera.position.z = 100;
+camera.position.x = 206;
+camera.position.y = -188;
+camera.position.z = 272;
 
 const geometry = new THREE.BoxGeometry( 10, 10, 10 );
 // const material = new THREE.MeshBasicMaterial({
@@ -65,6 +67,7 @@ const animate = () => {
   for(let mesh of meshs){
     mesh.rotation.y += 0.01;      
   }
+//   console.log(camera.position);
   render();
   window.requestAnimationFrame(animate);
 }
@@ -78,7 +81,7 @@ materialLoad((material) => {
 
 //シーンとカメラを描画
 //シーンとカメラがあってはじめて成立する
-renderer.render(scene, camera);
+// renderer.render(scene, camera);
 
 
 //==================================================================
