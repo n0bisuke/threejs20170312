@@ -24,23 +24,37 @@ const material = new THREE.MeshBasicMaterial({
   wireframe :true,
 });
 
+const meshs = [];
 for (let i = 0, x=0, y=0, z=0; i < 125; i++) {
-    const mesh = new THREE.Mesh(geometry, material);
+    meshs[i] = new THREE.Mesh(geometry, material);
     x += 50;
+
     if(i % 5 === 0){
         y -= 50;
         x = 0;
     }
+
     if(i % 25 === 0){
         y = 0;
         x = 0;
         z += 50;
     }
-    mesh.position.x = x;
-    mesh.position.y = y;
-    mesh.position.z = z;
-    scene.add(mesh);
+    
+    meshs[i].position.x = x;
+    meshs[i].position.y = y;
+    meshs[i].position.z = z;
+    scene.add(meshs[i]);
 }
+// console.log(mesh);
+
+function animate(){
+  for(let mesh of meshs){
+    mesh.rotation.y += 0.01;      
+  }
+  render();
+  window.requestAnimationFrame(animate);
+}
+animate();
 
 //まだまだでません
 
