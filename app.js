@@ -18,19 +18,29 @@ document.body.appendChild( renderer.domElement );
 const camera = new THREE.PerspectiveCamera( 75, canvasWidth / canvasHeight, 1, 1000 );
 camera.position.z = 100;
 
-//ジオメトリの設定：ジオメトリについて
-//この場合はプレーンジオメトリ
-const geometry = new THREE.BoxGeometry( 20, 20, 20 );
+const geometry = new THREE.BoxGeometry( 10, 10, 10 );
+const material = new THREE.MeshBasicMaterial({
+  color     :0x00ff00,
+  wireframe :true,
+});
 
-//マテリアルの設定
-const material = new THREE.MeshBasicMaterial();
-//ジオメトリとマテリアルをメッシュに設定
-//この３つは必ずセットになる
-const mesh = new THREE.Mesh(geometry, material);
-
-//まだでません
-//シーンにオブジェクトを追加する
-scene.add(mesh);
+for (let i = 0, x=0, y=0, z=0; i < 125; i++) {
+    const mesh = new THREE.Mesh(geometry, material);
+    x += 50;
+    if(i % 5 === 0){
+        y -= 50;
+        x = 0;
+    }
+    if(i % 25 === 0){
+        y = 0;
+        x = 0;
+        z += 50;
+    }
+    mesh.position.x = x;
+    mesh.position.y = y;
+    mesh.position.z = z;
+    scene.add(mesh);
+}
 
 //まだまだでません
 
